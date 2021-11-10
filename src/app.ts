@@ -1,10 +1,17 @@
 import express from 'express';
+import cancionesRoutes from './routes/canciones';
 
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
-    res.send('Prueba servidor')
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
+cancionesRoutes(app);
+app.get('/prueba/:id', async (req, res, next) => {
+
+    console.log("antes de la promesa");
+    
+    res.status(404).json({ message: "todo ok"});
 });
 
 
